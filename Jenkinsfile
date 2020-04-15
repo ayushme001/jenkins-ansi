@@ -12,16 +12,17 @@ pipeline {
                     sh ''' docker image ls
                     '''
                     myscript.info("Successfully Executed")
-                    def ret = sh(script: 'dooocker image ls', returnStatus: true)
-                    myscript.warning(ret)
+                   # def ret = sh(script: 'dooocker image ls', returnStatus: true)
+                   # myscript.warning(ret)
              }
          }
       }
       stage('Git Commit Id') {
          steps {
               script{
-		    def gitId=sh(script:'git rev-parse HEAD', returnStdout: true)
-                    myscript.gitCommitId(gitId)
+		    echo '$(git rev-parse HEAD)
+		    #def gitId=sh(script:'git rev-parse HEAD', returnStdout: true)
+                    #myscript.gitCommitId($(git rev-parse HEAD))
              }
          }
       }
